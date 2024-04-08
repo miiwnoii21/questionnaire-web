@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,9 @@ import { Injectable } from '@angular/core';
 })
 export class QuestionnaireService {
 
-  constructor() { }
+  constructor(private client: HttpClient) { }
+  
+  // login(username: string, password: string){
+    
+  // }
 }
