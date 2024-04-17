@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { LoginForm } from '../models/login-form/login-form';
 import { QuestionnaireService } from '../services/questionnaire/questionnaire.service';
-import { LoginResponse } from '../models/login-response/login-response';
+import { StorageService } from '../services/storage/storage.service';
+import { UserAuth } from '../models/user-auth/user-auth';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { LoginResponse } from '../models/login-response/login-response';
 export class LoginComponent {
   form = new LoginForm();
 
-  constructor(private questionnaireService: QuestionnaireService){}
+  constructor(private questionnaireService: QuestionnaireService, private storageService: StorageService){}
 
   onSubmit(){
     const {username, password} = this.form
@@ -24,6 +25,11 @@ export class LoginComponent {
         console.log(data);
         if(data.isSuccess){
           console.log("accestoken: " + data.data.accessToken);
+          console.log("data.expire: " + data.data.expiredDate);
+          //var userInfo: UserAuth = data.data;
+          //this.storageService.getUserAuth();
+          //this.storageService.saveUserAuth(userInfo);
+          this.storageService.saveUserAuth(data.data);
           
         }
       },

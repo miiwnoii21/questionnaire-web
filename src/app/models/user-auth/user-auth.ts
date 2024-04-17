@@ -1,4 +1,4 @@
-export class LoginResponse {
+export class UserAuth {
     accountId: string;
     fullName: string;
     accessToken: string;
