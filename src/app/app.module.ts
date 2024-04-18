@@ -9,18 +9,14 @@ import {Component} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import {FormsModule} from '@angular/forms'
 import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http';
-import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    ToolbarComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -29,8 +25,6 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MatFormFieldModule, 
     MatInputModule,
     MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
     MatGridListModule,
     HttpClientModule
   ],

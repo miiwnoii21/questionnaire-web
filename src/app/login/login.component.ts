@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoginForm } from '../models/login-form/login-form';
 import { QuestionnaireService } from '../services/questionnaire/questionnaire.service';
 import { StorageService } from '../services/storage/storage.service';
-import { UserAuth } from '../models/user-auth/user-auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,9 @@ import { UserAuth } from '../models/user-auth/user-auth';
 export class LoginComponent {
   form = new LoginForm();
 
-  constructor(private questionnaireService: QuestionnaireService, private storageService: StorageService){}
+  constructor(private questionnaireService: QuestionnaireService, 
+    private storageService: StorageService,
+    private router: Router){}
 
   onSubmit(){
     const {username, password} = this.form
@@ -30,7 +32,7 @@ export class LoginComponent {
           //this.storageService.getUserAuth();
           //this.storageService.saveUserAuth(userInfo);
           this.storageService.saveUserAuth(data.data);
-          
+          this.router.navigate(['/question-list'])
         }
       },
       error: (err) => {

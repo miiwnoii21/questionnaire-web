@@ -1,0 +1,5 @@
+.login-user {
+    display: flex;
+    flex: auto;
+    justify-content: flex-end;
+  }

@@ -1,12 +1,17 @@
-<form class="login-form" (ngSubmit)="onSubmit()">
-  <mat-form-field class="login-full-width">
-    <mat-label>Username</mat-label>
-    <input matInput id="username" name="username" placeholder="Your AD user." required autocomplete="off" maxlength="8" [(ngModel)]="form.username" #username="ngModel"/>
-  </mat-form-field>
-  <mat-form-field class="login-full-width">
-    <mat-label>Password</mat-label>
-    <input matInput id="password" name="password" type="password" placeholder="Your AD password." required autocomplete="off" [(ngModel)]="form.password"/>
-  </mat-form-field>
-  <button mat-flat-button color="primary">Login</button>
-</form>
-
+<mat-grid-list cols="8" rowHeight="400px">
+  <mat-grid-tile colspan="1"></mat-grid-tile>
+  <mat-grid-tile colspan="6" class="main-content">
+    <form class="login-form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="login-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput id="username" name="username" placeholder="Your AD user." required autocomplete="off" maxlength="8" [(ngModel)]="form.username" #username="ngModel"/>
+      </mat-form-field>
+      <mat-form-field class="login-full-width">
+        <mat-label>Password</mat-label>
+        <input matInput id="password" name="password" type="password" placeholder="Your AD password." required autocomplete="off" [(ngModel)]="form.password"/>
+      </mat-form-field>
+      <button mat-flat-button color="primary">Login</button>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1"></mat-grid-tile>
+</mat-grid-list>
