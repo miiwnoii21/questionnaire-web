@@ -19,4 +19,8 @@ export class StorageService {
     const userInfoStr = sessionStorage.getItem(StorageService.USER_INFO_KEY);
     return userInfoStr ? JSON.parse(userInfoStr) : null;
   }
+
+  terminateUserAuth(){
+    sessionStorage.removeItem(StorageService.USER_INFO_KEY)
+  }
 }
