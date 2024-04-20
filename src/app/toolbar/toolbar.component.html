@@ -1,15 +1,9 @@
 <mat-toolbar>
-    <span>Questionnaire</span>
-    <span class="login-user">{{FullName}}
-        <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
-        <mat-icon>home</mat-icon>
-      </button>
-    </span>
-
-
-    <div class="example-button-container">
-        <button mat-mini-fab disabled aria-label="Example icon button with a home icon">
-          <mat-icon>home</mat-icon>
-        </button>
-      </div> 
+  <span>Questionnaire</span>
+  @if(IsLogIn){
+    <span class="login-user">{{ FullName }} </span>
+    <button mat-icon-button color="primary" aria-label="logout" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+    </button>
+  }
 </mat-toolbar>
