@@ -17,7 +17,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import {MatCardModule} from '@angular/material/card';
-import { CategoryListComponent } from './category-list/category-list/category-list.component';
+import { CategoryListComponent } from './category-list/category-list.component';
 
 @NgModule({
   declarations: [
