@@ -22,10 +22,14 @@ export class QuestionnaireService {
   }
 
   getQuestionCategories(): Observable<any>{
-    let user = this.storageService.getUserAuth();
-    //user?.accessToken
+    const user = this.storageService.getUserAuth();
     httpOptions.headers = httpOptions.headers.set('Authorization',`Bearer ${user?.accessToken}`)
-    console.log(`httpOptions- ${JSON.stringify(httpOptions.headers)}`)
     return this.client.get(QUESTIONNAIRE_API+'/v1/questions/categories', httpOptions);
+  }
+
+  getQuestions(categoryId: string): Observable<any>{
+    const user = this.storageService.getUserAuth();
+    httpOptions.headers = httpOptions.headers.set('Authorization',`Bearer ${user?.accessToken}`)
+    return this.client.get(QUESTIONNAIRE_API+'/v1/questions/categories', httpOptions)
   }
 }
