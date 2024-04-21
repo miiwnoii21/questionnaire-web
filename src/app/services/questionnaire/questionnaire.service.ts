@@ -30,6 +30,6 @@ export class QuestionnaireService {
   getQuestions(categoryId: string): Observable<any>{
     const user = this.storageService.getUserAuth();
     httpOptions.headers = httpOptions.headers.set('Authorization',`Bearer ${user?.accessToken}`)
-    return this.client.get(QUESTIONNAIRE_API+'/v1/questions/categories', httpOptions)
+    return this.client.get(`${QUESTIONNAIRE_API}/v1/questions/categories/${categoryId}`, httpOptions)
   }
 }
