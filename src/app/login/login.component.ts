@@ -32,7 +32,7 @@ export class LoginComponent {
           //this.storageService.getUserAuth();
           //this.storageService.saveUserAuth(userInfo);
           this.storageService.saveUserAuth(data.data);
-          this.router.navigate(['/question-list'])
+          this.router.navigate(['/category-list'])
         }
       },
       error: (err) => {

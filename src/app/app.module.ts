@@ -16,13 +16,16 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {HttpClientModule} from '@angular/common/http';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { QuestionListComponent } from './question-list/question-list.component';
+import {MatCardModule} from '@angular/material/card';
+import { CategoryListComponent } from './category-list/category-list/category-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ToolbarComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    CategoryListComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { QuestionListComponent } from './question-list/question-list.component';
     MatIconModule,
     MatToolbarModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule
   ],
   providers: [
     provideAnimationsAsync()

@@ -1,0 +1,6 @@
+<app-toolbar></app-toolbar>
+<div class="main-content">
+    <mat-card *ngFor="let item of questionCategories" class="category-card" (click)="selectCategory(item.questionCategoryId)">
+        <mat-card-content style="width: 100%;">{{item.title}}</mat-card-content>
+    </mat-card>
+</div>
