@@ -2,18 +2,18 @@
 <div class="main-content">
     <h1>{{questionCategoryDetail.title}}</h1>
       <mat-stepper labelPosition="bottom" [linear]="true" #stepper>
-        <mat-step [stepControl]="firstFormGroup" *ngFor="let question of this.questionCategoryDetail.questionInfo">
-          <form [formGroup]="firstFormGroup">
+        <mat-step [stepControl]="question.formGroup" *ngFor="let question of this.questionCategoryDetail.questionInfo">
+          <form [formGroup]="question.formGroup">
             <ng-template matStepLabel>{{ question.title }}</ng-template>
-            <!-- <ul>
-              <li *ngFor="let answer of question.questionAnswerInfo">
-                  <mat-checkbox formControlName="firstCtrl"  value={{answer.questionAnswerId}}>{{answer.answer}}</mat-checkbox>
+            <ul>
+              <li *ngFor="let answer of question.questionAnswerInfo; let i = index">
+                  <mat-checkbox formControlName="{{question.questionId}}-formCtrl" value={{answer.questionAnswerId}}>{{answer.answer}}</mat-checkbox>
               </li>
-            </ul> -->
+            </ul>
 
             <div>
               <button mat-button matStepperPrevious *ngIf="question.sequence !== 1">Back</button>
-              <button mat-button matStepperNext>Next</button>
+              <button mat-button matStepperNext (click)="onSubmit(question.sequence)">Next</button>
             </div>
           </form>
         </mat-step>

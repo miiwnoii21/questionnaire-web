@@ -24,7 +24,6 @@ export class QuestionListComponent {
   //   params: this.formBuilder.group({})
   // });
   // questionFormGroup = new FormGroup({});
-  // formGroupList: unknown[] = [];
   constructor(private questionnaireService: QuestionnaireService, private route: ActivatedRoute, private formBuilder: FormBuilder){
 
   }
@@ -35,27 +34,26 @@ export class QuestionListComponent {
     console.log(JSON.stringify(categoryId))
     this.questionnaireService.getQuestions(categoryId).subscribe({
       next: (response) => {
-        console.log("getQuestions");
-        console.log(response);
+        console.log("getQuestions", response);
         if(response.isSuccess){
           this.questionCategoryDetail = response.data
-          //console.log(JSON.stringify(this.questions))
-          // this.questionCategoryDetail.questionInfo.forEach(question => {
-          //   this.formGroupList.push({
-          //     id: question.questionId,
-          //     seq: question.sequence,
-          //     formGroup: new FormGroup({}),
-          //   });
-          //   // this.questionFormGroup.addControl(question.questionId, new FormControl('answer', Validators.required));
-          // });
+          this.questionCategoryDetail.questionInfo = this.questionCategoryDetail.questionInfo.map(question => {
+            return {
+              ...question,
+              formGroup: this.formBuilder.group({
+                [`${question.questionId}-formCtrl`]: ['', Validators.required],
+              }),
+            }
+          });
 
-          // console.log('xxxxxxx',this.formGroupList)
+          console.log('this.questionCategoryDetail', this.questionCategoryDetail)
+          console.log('yyyyyy',this.firstFormGroup)
         }
       }
     })
   }
-  // onSubmit(){
-  //   console.log('submit')
-  // }
+  onSubmit(seq: number){
+    console.log('submit', this.questionCategoryDetail.questionInfo[seq -1].formGroup)
+  }
 
 }
