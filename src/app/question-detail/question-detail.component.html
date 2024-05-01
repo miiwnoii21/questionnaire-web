@@ -1,0 +1,20 @@
+<!-- <ng-container [formGroup]="form"> -->
+<!-- <div formControlName="form.get()">{{question.title}}</div>
+<ul formGroupName="answerGroup">
+     <li *ngFor="let answer of question.questionAnswerInfo">
+        <mat-checkbox formControlName="answer" value={{answer.questionAnswerId}}>{{answer.answer}}</mat-checkbox>
+    </li>
+</ul>
+<div>
+    <button mat-button matStepperNext (ngSubmit)="onSubmit()">Next</button>
+</div> -->
+<div formControlName={{question.questionId}}>{{question.title}}</div>
+<ul>
+     <!-- <li *ngFor="let answer of question.questionAnswerInfo">
+        <mat-checkbox formControlName={{question.questionId}} value={{answer.questionAnswerId}}>{{answer.answer}}</mat-checkbox>
+    </li> -->
+</ul>
+<div>
+    <button mat-button matStepperNext (ngSubmit)="onSubmit()">Next</button>
+</div>
+<!-- </ng-container> -->

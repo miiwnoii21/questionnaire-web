@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { QuestionnaireService } from '../services/questionnaire/questionnaire.service';
-import { QuestionCategory } from '../models/question-category/question-category';
 import { ActivatedRoute } from '@angular/router';
+import { QuestionCategoryDetail } from '../models/question-category-detail/question-category-detail';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-question-list',
@@ -10,14 +11,26 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class QuestionListComponent {
-  //questions: QuestionCategory[] = [];
-  constructor(private questionnaireService: QuestionnaireService, private route: ActivatedRoute){
+  questionCategoryDetail: QuestionCategoryDetail = new QuestionCategoryDetail();
+  firstFormGroup = this.formBuilder.group({
+    firstCtrl: ['', Validators.required],
+  });
+  // secondFormGroup = this.formBuilder.group({
+  //   secondCtrl: ['', Validators.required],
+  // });
+
+  // questionFormGroup = this.formBuilder.group({
+  //   //name: ["", [Validators.required]],
+  //   params: this.formBuilder.group({})
+  // });
+  // questionFormGroup = new FormGroup({});
+  // formGroupList: unknown[] = [];
+  constructor(private questionnaireService: QuestionnaireService, private route: ActivatedRoute, private formBuilder: FormBuilder){
 
   }
 
   ngOnInit(){
     console.log('test')
-    //this.route.snapshot
     const categoryId = this.route.snapshot.queryParamMap.get('category')?? '';
     console.log(JSON.stringify(categoryId))
     this.questionnaireService.getQuestions(categoryId).subscribe({
@@ -25,20 +38,24 @@ export class QuestionListComponent {
         console.log("getQuestions");
         console.log(response);
         if(response.isSuccess){
-          //this.questions = response.data
+          this.questionCategoryDetail = response.data
           //console.log(JSON.stringify(this.questions))
+          // this.questionCategoryDetail.questionInfo.forEach(question => {
+          //   this.formGroupList.push({
+          //     id: question.questionId,
+          //     seq: question.sequence,
+          //     formGroup: new FormGroup({}),
+          //   });
+          //   // this.questionFormGroup.addControl(question.questionId, new FormControl('answer', Validators.required));
+          // });
+
+          // console.log('xxxxxxx',this.formGroupList)
         }
       }
     })
-
-    // this.questionnaireService.getQuestions(categoryId).subscribe({
-    //   next: (response) => {
-    //     response.data
-    //   }
-    // });
   }
-
-  // selectCategory(private categoryId: string){
-
+  // onSubmit(){
+  //   console.log('submit')
   // }
+
 }

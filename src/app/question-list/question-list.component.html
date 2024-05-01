@@ -1,4 +1,71 @@
 <app-toolbar></app-toolbar>
 <div class="main-content">
-    <h1></h1>
+    <h1>{{questionCategoryDetail.title}}</h1>
+      <mat-stepper labelPosition="bottom" [linear]="true" #stepper>
+        <mat-step [stepControl]="firstFormGroup" *ngFor="let question of this.questionCategoryDetail.questionInfo">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>{{ question.title }}</ng-template>
+            <!-- <ul>
+              <li *ngFor="let answer of question.questionAnswerInfo">
+                  <mat-checkbox formControlName="firstCtrl"  value={{answer.questionAnswerId}}>{{answer.answer}}</mat-checkbox>
+              </li>
+            </ul> -->
+
+            <div>
+              <button mat-button matStepperPrevious *ngIf="question.sequence !== 1">Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+
+
+        <!-- <form [formGroup]="questionFormGroup">
+          <ng-container *ngFor="let item of this.questionCategoryDetail.questionInfo">
+        <mat-step [stepControl]="questionFormGroup" >
+            <app-question-detail [form]="questionFormGroup" [question]="item"></app-question-detail>
+              
+             
+          </mat-step>
+          </ng-container>
+        </form> -->
+      </mat-stepper>
+
+
+      <!-- <mat-stepper [linear]=true #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Fill out your name</ng-template>
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
+          <form [formGroup]="secondFormGroup">
+            <mat-form-field>
+              <mat-label>Address</mat-label>
+              <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                     required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button matStepperNext>Next</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-stepper> -->
+      
+      
 </div>

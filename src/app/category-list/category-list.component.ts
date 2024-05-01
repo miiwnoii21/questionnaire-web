@@ -31,10 +31,6 @@ export class CategoryListComponent {
   selectCategory(categoryId: string) {
     console.log('selectCategory' + categoryId);
     this.router.navigate(['/question-list'], {queryParams: {category: categoryId}});
-    // this.questionnaireService.getQuestions(categoryId).subscribe({
-    //   next: (response) => {
-    //     response.data
-    //   }
-    // });
+    
   }
 }
