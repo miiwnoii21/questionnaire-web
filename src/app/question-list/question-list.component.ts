@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { QuestionnaireService } from '../services/questionnaire/questionnaire.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionCategoryDetail } from '../models/question-category-detail/question-category-detail';
 import {
   FormBuilder,
@@ -25,7 +25,8 @@ export class QuestionListComponent {
   constructor(
     private questionnaireService: QuestionnaireService,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -74,6 +75,8 @@ export class QuestionListComponent {
           console.log('submit', response);
           if(response.isSuccess){
             console.log('score: ' + response.data.score)
+            this.router.navigate(['/score-summary'], {queryParams: {score: response.data.score, fullScore: response.data.fullScore}});
+            //{queryParams: {category: categoryId}}
           }
         }
       });

@@ -1,0 +1,26 @@
+.main-content{
+    padding-top: 30px;
+    padding-left: 250px;
+    padding-right: 250px;
+}
+
+.score-summary{
+    padding-top: 150px;
+    padding-bottom: 20px;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    font-size: 2em;
+}
+
+.center-content{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    font-size: 2em;
+}
+
+.button{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
