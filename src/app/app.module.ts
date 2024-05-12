@@ -21,6 +21,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 import { ScoreSummaryComponent } from './score-summary/score-summary.component';
+import { TimerComponent } from './timer/timer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ScoreSummaryComponent } from './score-summary/score-summary.component';
     CategoryListComponent,
     QuestionDetailComponent,
     ScoreSummaryComponent,
+    TimerComponent,
   ],
   imports: [
     BrowserModule,
