@@ -1,5 +1,6 @@
 <app-toolbar></app-toolbar>
 <div class="main-content">
+  <app-timer (timeUpEvent)="submitExam($event)"></app-timer>
   <h1>{{ questionCategoryDetail.title }}</h1>
   <mat-stepper labelPosition="bottom" [linear]="true" #stepper>
     <mat-step

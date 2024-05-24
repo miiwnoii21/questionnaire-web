@@ -6,6 +6,7 @@ import { UserAuth } from '../../models/user-auth/user-auth';
 })
 export class StorageService {
   public static readonly USER_INFO_KEY = 'questionnaire-user-info';
+  public static readonly REMAINING_EXAM_TIME_KEY = 'remaining_exam_time';
 
   constructor() { }
 
@@ -23,4 +24,24 @@ export class StorageService {
   terminateUserAuth(){
     sessionStorage.removeItem(StorageService.USER_INFO_KEY)
   }
+
+  saveRemainingExamTime(hour :number, minute: number, second: number){
+    console.log('saveRemainingExamTime: ' + hour + " minute" + minute + " second" + second)
+    sessionStorage.setItem(StorageService.REMAINING_EXAM_TIME_KEY, `${hour}|${minute}|${second}`);
+    console.log('after saveRemainingExamTime: ' +  sessionStorage.getItem(StorageService.REMAINING_EXAM_TIME_KEY));
+  }
+
+  getRemainingExamTime():[number, number, number]{
+    const remainingExamTImeStr = sessionStorage.getItem(StorageService.REMAINING_EXAM_TIME_KEY);
+    console.log('getRemainingExamTime: ' +  remainingExamTImeStr);
+    const remainingExamTime = remainingExamTImeStr?.split('|');
+    if(remainingExamTime !== undefined){
+      return [Number(remainingExamTime[0]), Number(remainingExamTime[1]), Number(remainingExamTime[2])];
+    }
+    else{
+      return [0,0,0];
+    }
+    
+  }
+
 }

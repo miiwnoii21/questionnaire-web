@@ -1,0 +1,13 @@
+.time-box{
+    display: inline-flex;
+    font-size: 4em;
+    padding: 10px;
+}
+
+.center-content{
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}

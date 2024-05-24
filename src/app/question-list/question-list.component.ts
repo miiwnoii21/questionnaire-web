@@ -13,6 +13,7 @@ import {
   AssignmentAnswer,
   AssignmentQuestion,
 } from '../models/assignment/assignment';
+import { StorageService } from '../services/storage/storage.service';
 
 @Component({
   selector: 'app-question-list',
@@ -24,6 +25,7 @@ export class QuestionListComponent {
   submitedAssignment: Assignment = new Assignment();
   constructor(
     private questionnaireService: QuestionnaireService,
+    private storageService: StorageService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router
@@ -63,20 +65,17 @@ export class QuestionListComponent {
               answers: [],
             });
           });
+          this.setExamCounterTime(this.questionCategoryDetail.timeLimitOfMinuteUnit);
         }
       },
     });
   }
+
   onSubmit() {
-    console.log(
-      'submit---', this.submitedAssignment)
       this.questionnaireService.submitAssignment(this.submitedAssignment).subscribe({
         next: (response) => {
-          console.log('submit', response);
           if(response.isSuccess){
-            console.log('score: ' + response.data.score)
             this.router.navigate(['/score-summary'], {queryParams: {score: response.data.score, fullScore: response.data.fullScore}});
-            //{queryParams: {category: categoryId}}
           }
         }
       });
@@ -87,16 +86,33 @@ export class QuestionListComponent {
     let question = this.submitedAssignment.questions.find(x => x.questionId === questionId);
     if(question != null){
       if(question?.answers.find(x => x.questionAnswerId == answerId) !== undefined){
-        console.log("filter")
         question.answers = question?.answers.filter(x => x.questionAnswerId !== answerId)?? []; 
       }
       else{
-        console.log("push")
         question.answers.push({questionAnswerId: answerId});
       }
-      console.log("question ", question)
     }
-    
+  }
 
+  setExamCounterTime(limitTimerInMinute: number){
+    let hour = 0;
+    let minute = 0;
+    let second = 0;
+    [hour, minute, second] = this.storageService.getRemainingExamTime()
+    if(hour === 0 && minute === 0 && second === 0){
+      console.log('setExamCounterTime: ' + limitTimerInMinute)
+      hour = Math.floor(limitTimerInMinute / 60);
+      minute = limitTimerInMinute % 60;
+      second = 0;
+    
+      
+    }
+    this.storageService.saveRemainingExamTime(hour, minute, second);
+  }
+
+  submitExam(isTimeUp: boolean){
+    if(isTimeUp){
+      this.onSubmit();
+    }
   }
 }
